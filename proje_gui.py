@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+#PyQT5 adaptation of EE302 Term Project software
+#Emre Erdem (fo.emre@gmail.com)
+
 #EE302 Term Project Graphical User Interface description code
 #Written by BARKIN TUNCER (tuncer.barkin@gmail.com)
 #Please send an email if you have any suggestions or find any bugs
@@ -6,7 +9,6 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from pyqtgraph import PlotWidget
-
 
 try:
     _encoding = QtWidgets.QApplication.UnicodeUTF8
@@ -407,7 +409,8 @@ class Ui_MainWindow(object):
 
 if __name__ == "__main__":
     import sys
-
+
+
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
