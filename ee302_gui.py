@@ -24,12 +24,14 @@ parser.add_argument('--port', help='The USB port which is connected to Arduino B
 parser.add_argument('--window',type=int ,default = 100 ,help='Window length for plotting the data. Cannot be less than 10. Default = 100')
 args = parser.parse_args()
 
-ports = list(serial.tools.list_ports.comports())
+ports = serial.tools.list_ports.comports()
+default_port = [p[0] for p in ports if 'CH340' in p[1] or 'Arduino' in p[1]][0]
 if args.port is not None:
 	port = args.port
 else:
-	port = [p[0] for p in ports if 'CH340' in p[1] or 'Arduino' in p[1]][0]
+	port = default_port
 
+print("Your Arduino is in: " + str(default_port))
 
 def splitInt(val):
     val1 = val*100
@@ -183,7 +185,7 @@ if __name__=="__main__":
     app = QtWidgets.QApplication(sys.argv)
     try:
         arduino = serial.Serial(port, 19200)
-        if ('CH340' not in arduino.name or 'Arduino' not in arduino.name):
+        if arduino.name not in [p[0] for p in ports if 'CH340' in p[1] or 'Arduino' in p[1]]:
         	raise serial.SerialException
     except serial.SerialException:
         print('Cannot find the arduino board. Probably the usb port entered is wrong(--port).')
