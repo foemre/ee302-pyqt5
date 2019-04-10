@@ -183,6 +183,8 @@ if __name__=="__main__":
     app = QtWidgets.QApplication(sys.argv)
     try:
         arduino = serial.Serial(port, 19200)
+        if ('CH340' not in arduino.name or 'Arduino' not in arduino.name):
+        	raise serial.SerialException
     except serial.SerialException:
         print('Cannot find the arduino board. Probably the usb port entered is wrong(--port).')
     else:
