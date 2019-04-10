@@ -1,3 +1,6 @@
+#PyQT5 adaptation of EE302 Term Project software
+#Emre Erdem (fo.emre@gmail.com)
+
 #EE302 Term Project Graphical User Interface initialization code
 #Written by BARKIN TUNCER (tuncer.barkin@gmail.com)
 #Please send an email if you have any suggestions or find any bugs
