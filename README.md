@@ -3,6 +3,8 @@ PyQT5 adaptation of EE302 Term Project software
 
 Adapted by Emre Erdem (fo.emre@gmail.com)
 
+Added automatic port selection
+
 `pip install PyQt5` : it's that simple
 
 Installation:
