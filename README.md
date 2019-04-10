@@ -2,6 +2,7 @@
 PyQT5 adaptation of EE302 Term Project software
 
 Adapted by Emre Erdem (fo.emre@gmail.com)
+
 `pip install PyQt5` : it's that simple
 
 Installation:
