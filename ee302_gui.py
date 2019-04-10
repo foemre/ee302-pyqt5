@@ -12,6 +12,7 @@ import proje_gui
 import numpy as np
 import pyqtgraph as pg
 import serial
+import serial.tools.list_ports
 import numpy
 import os.path
 import struct
@@ -19,9 +20,16 @@ import argparse
 import time
 
 parser = argparse.ArgumentParser(description='EE302 Term Project GUI. If you have any questions, suggestions or comments, feel free to send an email to tuncer.barkin@gmail.com.')
-parser.add_argument('--port', default = 'COM4',help='The USB port which is connected to Arduino Board. Example: COM4 or /dev/tty0')
+parser.add_argument('--port', help='The USB port which is connected to Arduino Board. Example: COM4 or /dev/tty0')
 parser.add_argument('--window',type=int ,default = 100 ,help='Window length for plotting the data. Cannot be less than 10. Default = 100')
 args = parser.parse_args()
+
+ports = list(serial.tools.list_ports.comports())
+if args.port is not None:
+	port = args.port
+else:
+	port = [p[0] for p in ports if 'CH340' in p[1] or 'Arduino' in p[1]][0]
+
 
 def splitInt(val):
     val1 = val*100
@@ -174,7 +182,7 @@ class ExampleApp(QtWidgets.QMainWindow, proje_gui.Ui_MainWindow):
 if __name__=="__main__":
     app = QtWidgets.QApplication(sys.argv)
     try:
-        arduino = serial.Serial(args.port, 19200)
+        arduino = serial.Serial(port, 19200)
     except serial.SerialException:
         print('Cannot find the arduino board. Probably the usb port entered is wrong(--port).')
     else:
